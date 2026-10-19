@@ -160,6 +160,9 @@ function render(){
 }
 
 $('q').addEventListener('input', render);
+$('q').addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') { render(); scrollToResult(); }
+});
 $('reset').addEventListener('click', () => {
   $('q').value = '';
   DIMS.forEach(d => state[d.key] = '');
