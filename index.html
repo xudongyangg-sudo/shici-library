@@ -131,8 +131,12 @@ function match(p){
 }
 
 function scrollToResult(){
-  const el = document.querySelector('.toolbar') || document.querySelector('.list');
-  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  const el = document.querySelector('.list .card') || document.querySelector('.list');
+  if (!el) return;
+  const header = document.querySelector('header');
+  const offset = header ? header.offsetHeight + 14 : 0;
+  const y = el.getBoundingClientRect().top + window.scrollY - offset;
+  window.scrollTo({top: Math.max(0, y), behavior: 'smooth'});
 }
 
 function render(){
