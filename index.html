@@ -110,6 +110,7 @@ function buildGroups(){
     state[k] = (state[k] === v) ? '' : v;
     g.querySelectorAll('.tag[data-k="'+k+'"]').forEach(x => x.classList.toggle('on', x.dataset.v === state[k]));
     render();
+    scrollToResult();
   }));
 }
 
@@ -127,6 +128,11 @@ function match(p){
     else { if (fv !== v) return false; }
   }
   return true;
+}
+
+function scrollToResult(){
+  const el = document.querySelector('.toolbar') || document.querySelector('.list');
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
 function render(){
